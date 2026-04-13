@@ -30,7 +30,30 @@ int main() {
         cout << "Enter villager name: ";
         getline(cin, name);
 
-        
+        auto it = villagerData.find(name);
+        if (it == villagerData.end())
+            cout << "Villager not found.\n";
+
+        switch (choice) {
+            case 1:
+                get<0>(it->second)++;
+                break;
+
+            case 2:
+                if (get<0>(it->second) > 0)
+                    get<0>(it->second)--;
+                break;
+
+            case 3:
+                cout << "\nFound " << name << ": "
+                     << "Friendship = " << get<0>(it->second) << ", "
+                     << "Species = " << get<1>(it->second) << ", "
+                     << "Catchphrase = " << get<2>(it->second) << '\n';
+                break;
+
+            default:
+                cout << "Invalid choice, try again.\n";
+        }
     }
 
     // access the map using a range-based for loop
