@@ -1,7 +1,6 @@
 // COMSC-210 | Lab 27 | Barsbek
 #include <iostream>
 #include <map>
-#include <vector>
 #include <tuple>
 using namespace std;
 
@@ -25,15 +24,13 @@ int main() {
     }
 
     // access the map using iterators
-    // cout << "\nVillagers and their favorite colors (iterators):" << endl;
-    // for (map<string, vector<string>>::iterator it = villagerData.begin();
-    //                                            it != villagerData.end(); ++it) {
-    //     cout << it->first << ": ";
-    //     for (auto color : it->second) {
-    //         cout << color << " ";
-    //     }
-    //     cout << endl;
-    // }
+    cout << "\nVillagers (iterators):" << endl;
+    for (auto& it : villagerData) {
+        cout << it.first << ": "
+             << "Friendship = " << get<0>(it.second) << ", "
+             << "Species = " << get<1>(it.second) << ", "
+             << "Catchphrase = " << get<2>(it.second) << '\n';
+    }
 
     // delete an element /
     villagerData.erase("Raymond");
