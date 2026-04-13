@@ -85,53 +85,89 @@ int main() {
                 }
 
                 get<0>(it->second)++;
+                break;
             }
 
-        cout << "\nVillager details:\n";
-        for (const auto& pair : villagerData) {  // output
-            cout << pair.first << " ["
-                 << get<0>(pair.second) << ", "
-                 << get<1>(pair.second) << ", "
-                 << get<2>(pair.second) << "]\n";
+            case 4: { // --friendship
+                cout << "Enter villager name: ";
+                getline(cin, name);
+
+                auto it = villagerData.find(name);
+                if (it == villagerData.end()) {
+                    cout << "Villager not found.\n";
+                    break;
+                }
+
+                int& friendship = get<0>(it->second);
+                if (friendship > 0)
+                    friendship--;
+                break;
+            }
+
+            case 5: { // search by name
+                cout << "Enter villager name: ";
+                getline(cin, name);
+
+                auto it = villagerData.find(name);
+                if (it == villagerData.end()) {
+                    cout << "Villager not found.\n";
+                    break;
+                }
+
+                cout << "\nFound " << name << ": "
+                     << "Friendship = " << get<0>(it->second) << ", "
+                     << "Species = " << get<1>(it->second) << ", "
+                     << "Catchphrase = " << get<2>(it->second) << '\n';
+                break;
+            }
+                
+
+                // cout << "\nVillager details:\n";
+                // for (const auto& pair : villagerData) {  // output
+                //     cout << pair.first << " ["
+                //          << get<0>(pair.second) << ", "
+                //          << get<1>(pair.second) << ", "
+                //          << get<2>(pair.second) << "]\n";
+                // }
         }
+
+        // access the map using a range-based for loop
+        // cout << "Villagers (range-based for loop):" << endl;
+        // for (const auto& pair : villagerData) {
+        //     cout << pair.first << ": "
+        //          << "Friendship = " << get<0>(pair.second) << ", "
+        //          << "Species = " << get<1>(pair.second) << ", "
+        //          << "Catchphrase = " << get<2>(pair.second) << '\n';
+        // }
+        //
+        // // access the map using iterators
+        // cout << "\nVillagers: (iterators)" << endl;
+        // for (auto it = villagerData.begin(); it != villagerData.end(); ++it) {
+        //     cout << it->first << ": "
+        //          << "Friendship = " << get<0>(it->second) << ", "
+        //          << "Species = " << get<1>(it->second) << ", "
+        //          << "Catchphrase = " << get<2>(it->second) << '\n';
+        // }
+        //
+        // // delete an element /
+        // villagerData.erase("Raymond");
+        //
+        // // search for an element using .find() to avoid errors
+        // string searchKey = "Audie";
+        // auto it = villagerData.find(searchKey);
+        // if (it != villagerData.end()) {  // the iterator points to beyond the end of the map
+        //     cout << "\nFound " << searchKey << ": "
+        //          << "Friendship = " << get<0>(it->second) << ", "
+        //          << "Species = " << get<1>(it->second) << ", "
+        //          << "Catchphrase = " << get<2>(it->second) << '\n';
+        // } else
+        //     cout << endl << searchKey << " not found." << endl;
+        //
+        // // report size, clear, report size again to confirm map operations
+        // cout << "\nSize before clear: " << villagerData.size() << endl;
+        // villagerData.clear();
+        // cout << "Size after clear: " << villagerData.size() << endl;
+
+        return 0;
     }
-
-    // access the map using a range-based for loop
-    // cout << "Villagers (range-based for loop):" << endl;
-    // for (const auto& pair : villagerData) {
-    //     cout << pair.first << ": "
-    //          << "Friendship = " << get<0>(pair.second) << ", "
-    //          << "Species = " << get<1>(pair.second) << ", "
-    //          << "Catchphrase = " << get<2>(pair.second) << '\n';
-    // }
-    //
-    // // access the map using iterators
-    // cout << "\nVillagers: (iterators)" << endl;
-    // for (auto it = villagerData.begin(); it != villagerData.end(); ++it) {
-    //     cout << it->first << ": "
-    //          << "Friendship = " << get<0>(it->second) << ", "
-    //          << "Species = " << get<1>(it->second) << ", "
-    //          << "Catchphrase = " << get<2>(it->second) << '\n';
-    // }
-    //
-    // // delete an element /
-    // villagerData.erase("Raymond");
-    //
-    // // search for an element using .find() to avoid errors
-    // string searchKey = "Audie";
-    // auto it = villagerData.find(searchKey);
-    // if (it != villagerData.end()) {  // the iterator points to beyond the end of the map
-    //     cout << "\nFound " << searchKey << ": "
-    //          << "Friendship = " << get<0>(it->second) << ", "
-    //          << "Species = " << get<1>(it->second) << ", "
-    //          << "Catchphrase = " << get<2>(it->second) << '\n';
-    // } else
-    //     cout << endl << searchKey << " not found." << endl;
-    //
-    // // report size, clear, report size again to confirm map operations
-    // cout << "\nSize before clear: " << villagerData.size() << endl;
-    // villagerData.clear();
-    // cout << "Size after clear: " << villagerData.size() << endl;
-
-    return 0;
 }
