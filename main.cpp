@@ -18,10 +18,12 @@ int main() {
     string name = "";
     while (true) {
         cout << "Menu:\n"
-             << "1. Increase Friendship\n"
-             << "2. Decrease Friendship\n"
-             << "3. Search for Villager\n"
-             << "4. Exit\n"
+             << "1. Add Villager\n"
+             << "2. Delete Villager\n"
+             << "3. Increase Friendship\n"
+             << "4. Decrease Friendship\n"
+             << "5. Search for Villager\n"
+             << "6. Exit\n"
              << "Choice: ";
         cin >> choice;
         cin.ignore();
