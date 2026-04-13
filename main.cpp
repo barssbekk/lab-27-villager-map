@@ -24,6 +24,13 @@ int main() {
              << "4. Exit\n"
              << "Choice: ";
         cin >> choice;
+        cin.ignore();
+
+        if (choice == 4) break; // exit
+        cout << "Enter villager name: ";
+        getline(cin, name);
+
+        
     }
 
     // access the map using a range-based for loop
