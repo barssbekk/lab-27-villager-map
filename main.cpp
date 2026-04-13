@@ -17,7 +17,7 @@ int main() {
     int choice = 0;
     string name = "";
     while (true) {
-        cout << "Menu:\n"
+        cout << "Menu:\n" // main menu
              << "1. Add Villager\n"
              << "2. Delete Villager\n"
              << "3. Increase Friendship\n"
@@ -28,18 +28,10 @@ int main() {
         cin >> choice;
         cin.ignore();
 
-        if (choice == 4) break; // exit
-        cout << "Enter villager name: ";
-        getline(cin, name);
-
-        auto it = villagerData.find(name);
-        if (it == villagerData.end()) {
-            cout << "Villager not found.\n";
-            continue;
-        }
+        if (choice == 6) break; // exit
 
         switch (choice) {
-            case 1: {
+            case 1: { // add a new villager
                 string newName;
                 string species;
                 string phrase;
@@ -63,7 +55,7 @@ int main() {
                 break;
             }
 
-            case 2: {
+            case 2: { // delete villager
                 cout << "Enter villager name: ";
                 getline(cin, name);
 
@@ -74,7 +66,7 @@ int main() {
                 break;
             }
 
-            case 3: {
+            case 3: { // ++friendship
                 cout << "Enter villager name: ";
                 getline(cin, name);
 
@@ -98,6 +90,7 @@ int main() {
                     break;
                 }
 
+                // prevent negative friendship
                 int& friendship = get<0>(it->second);
                 if (friendship > 0)
                     friendship--;
@@ -120,54 +113,18 @@ int main() {
                      << "Catchphrase = " << get<2>(it->second) << '\n';
                 break;
             }
-                
 
-                // cout << "\nVillager details:\n";
-                // for (const auto& pair : villagerData) {  // output
-                //     cout << pair.first << " ["
-                //          << get<0>(pair.second) << ", "
-                //          << get<1>(pair.second) << ", "
-                //          << get<2>(pair.second) << "]\n";
-                // }
+            default:
+                cout << "Invalid choice, try again.\n";
         }
 
-        // access the map using a range-based for loop
-        // cout << "Villagers (range-based for loop):" << endl;
-        // for (const auto& pair : villagerData) {
-        //     cout << pair.first << ": "
-        //          << "Friendship = " << get<0>(pair.second) << ", "
-        //          << "Species = " << get<1>(pair.second) << ", "
-        //          << "Catchphrase = " << get<2>(pair.second) << '\n';
-        // }
-        //
-        // // access the map using iterators
-        // cout << "\nVillagers: (iterators)" << endl;
-        // for (auto it = villagerData.begin(); it != villagerData.end(); ++it) {
-        //     cout << it->first << ": "
-        //          << "Friendship = " << get<0>(it->second) << ", "
-        //          << "Species = " << get<1>(it->second) << ", "
-        //          << "Catchphrase = " << get<2>(it->second) << '\n';
-        // }
-        //
-        // // delete an element /
-        // villagerData.erase("Raymond");
-        //
-        // // search for an element using .find() to avoid errors
-        // string searchKey = "Audie";
-        // auto it = villagerData.find(searchKey);
-        // if (it != villagerData.end()) {  // the iterator points to beyond the end of the map
-        //     cout << "\nFound " << searchKey << ": "
-        //          << "Friendship = " << get<0>(it->second) << ", "
-        //          << "Species = " << get<1>(it->second) << ", "
-        //          << "Catchphrase = " << get<2>(it->second) << '\n';
-        // } else
-        //     cout << endl << searchKey << " not found." << endl;
-        //
-        // // report size, clear, report size again to confirm map operations
-        // cout << "\nSize before clear: " << villagerData.size() << endl;
-        // villagerData.clear();
-        // cout << "Size after clear: " << villagerData.size() << endl;
-
-        return 0;
+        cout << "\nVillager details:\n";
+        for (const auto& pair : villagerData) {  // output
+            cout << pair.first << " ["
+                 << get<0>(pair.second) << ", "
+                 << get<1>(pair.second) << ", "
+                 << get<2>(pair.second) << "]\n";
+        }
     }
+    return 0;
 }
