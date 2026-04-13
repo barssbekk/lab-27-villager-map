@@ -39,25 +39,54 @@ int main() {
         }
 
         switch (choice) {
-            case 1:
+            case 1: {
+                string newName;
+                string species;
+                string phrase;
+                int level = 0;
+
+                cout << "Villager name: ";
+                getline(cin, newName);
+
+                cout << "Friendship level: ";
+                cin >> level;
+                cin.ignore();
+
+                cout << "Species: ";
+                getline(cin, species);
+
+                cout << "Catchphrase: ";
+                getline(cin, phrase);
+
+                villagerData[newName] = make_tuple(level, species, phrase);
+                cout << newName << " added.\n";
+                break;
+            }
+
+            case 2: {
+                cout << "Enter villager name: ";
+                getline(cin, name);
+
+                if (villagerData.erase(name))
+                    cout << name << " deleted.\n";
+                else
+                    cout << "Villager not found.\n";
+                break;
+            }
+
+            case 3: {
+                cout << "Enter villager name: ";
+                getline(cin, name);
+
+                auto it = villagerData.find(name);
+                if (it == villagerData.end()) {
+                    cout << "Villager not found.\n";
+                    break;
+                }
+
                 get<0>(it->second)++;
-                break;
+            }
 
-            case 2:
-                if (get<0>(it->second) > 0)
-                    get<0>(it->second)--;
-                break;
-
-            case 3:
-                cout << "\nFound " << name << ": "
-                     << "Friendship = " << get<0>(it->second) << ", "
-                     << "Species = " << get<1>(it->second) << ", "
-                     << "Catchphrase = " << get<2>(it->second) << '\n';
-                break;
-
-            default:
-                cout << "Invalid choice, try again.\n";
-        }
         cout << "\nVillager details:\n";
         for (const auto& pair : villagerData) {  // output
             cout << pair.first << " ["
