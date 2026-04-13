@@ -33,7 +33,7 @@ int main() {
         cout << endl;
     }
 
-    // delete an element
+    // delete an element / 
     villagerColors.erase("Raymond");
 
     // search for an element using .find() to avoid errors
