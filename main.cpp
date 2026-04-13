@@ -31,8 +31,10 @@ int main() {
         getline(cin, name);
 
         auto it = villagerData.find(name);
-        if (it == villagerData.end())
+        if (it == villagerData.end()) {
             cout << "Villager not found.\n";
+            continue;
+        }
 
         switch (choice) {
             case 1:
@@ -53,6 +55,13 @@ int main() {
 
             default:
                 cout << "Invalid choice, try again.\n";
+        }
+        cout << "\nVillager details:\n";
+        for (const auto& pair : villagerData) {  // output
+            cout << pair.first << " ["
+                 << get<0>(pair.second) << ", "
+                 << get<1>(pair.second) << ", "
+                 << get<2>(pair.second) << "]\n";
         }
     }
 
